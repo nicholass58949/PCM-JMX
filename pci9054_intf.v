@@ -19,11 +19,11 @@ module pci9054_intf#
 	// Module reset signal
 	output reg [3:0] rst_n_o,
 	// Set the pull-down/up resistance of an interface
-	output reg [3:0] pud_sel_o,
+	//output reg [3:0] pud_sel_o,
 	// Set the terminal resistance of the interface(lvds port, terminal match always have)
-	output reg [2:0] tr_sel_o,
+	//output reg [2:0] tr_sel_o,
 	// Set send and receive loops
-	output reg [3:0] lp_sel_o,
+	//output reg [3:0] lp_sel_o,
 	// Set receive enable
 	output reg [3:0] rxd_ena_o,
 	// Set receive edge
@@ -34,67 +34,67 @@ module pci9054_intf#
 	output reg [3:0] rd_mode_o,
 		
 	// Pcm send control interface
-	output reg txd_start_o, 			//start sending test data
-	output reg txd_edge_o, 				//send edge
-	output reg [15:0] txd_baudrate_o, 	//send baudrate
-	output reg [15:0] txd_frame_o, 		//send framlength 
-	output reg [31:0] txd_code_o, 		//send synchronous code
-	output reg [2:0] txd_pattern_o, 	//send code pattern
-	output reg [1:0] txd_number_o, 		//send synchronous code length
-	output reg [31:0] txd_cntr_num_o, 	//send frame count
-	output reg [31:0] txd_send_time_o, 	//send interval time
-	// Pcm receive control interface 1
-	output reg [1:0] rxd_number1_o, 	//synchronous code num
-	output reg [2:0] rxd_pattern1_o,	//set code pattern	
-	output reg [15:0] rxd_length1_o,	//set frame length
-	output reg [31:0] rxd_code1_o, 		//set synchronous code
-    output reg [15:0] rxd_divisor1_o, 	//calculate the time according to the master clock,make sure the frequency is 10khz
-	output reg [15:0] rxd_filter_num1_o,//set filter number
-	// Pcm receive control interface 2
-	output reg [1:0] rxd_number2_o,
-	output reg [2:0] rxd_pattern2_o,
-	output reg [15:0] rxd_length2_o,
-	output reg [31:0] rxd_code2_o,
-    output reg [15:0] rxd_divisor2_o,
-	output reg [15:0] rxd_filter_num2_o,
-	// Pcm receive control interface 3
-	output reg [1:0] rxd_number3_o,
-	output reg [2:0] rxd_pattern3_o,
-	output reg [15:0] rxd_length3_o,
-	output reg [31:0] rxd_code3_o,
-    output reg [15:0] rxd_divisor3_o,
-	output reg [15:0] rxd_filter_num3_o,
-	// Pcm receive control interface 4
-	output reg [1:0] rxd_number4_o,
-	output reg [2:0] rxd_pattern4_o,
-	output reg [15:0] rxd_length4_o,
-	output reg [31:0] rxd_code4_o,
-    output reg [15:0] rxd_divisor4_o,
-	output reg [15:0] rxd_filter_num4_o,
+	//delete reg txd_start_o, 			//start sending test data
+	//delete reg txd_edge_o, 				//send edge
+	//delete reg [15:0] txd_baudrate_o, 	//send baudrate
+	//delete reg [15:0] txd_frame_o, 		//send framlength 
+	//delete reg [31:0] txd_code_o, 		//send synchronous code
+	//delete reg [2:0] txd_pattern_o, 	//send code pattern
+	//delete reg [1:0] txd_number_o, 		//send synchronous code length
+	//delete reg [31:0] txd_cntr_num_o, 	//send frame count
+	//delete reg [31:0] txd_send_time_o, 	//send interval time
+	//// Pcm receive control interface 1
+	//delete reg [1:0] rxd_number1_o, 	//synchronous code num
+	//delete reg [2:0] rxd_pattern1_o,	//set code pattern	
+	//delete reg [15:0] rxd_length1_o,	//set frame length
+	//delete reg [31:0] rxd_code1_o, 		//set synchronous code
+    //delete reg [15:0] rxd_divisor1_o, 	//calculate the time according to the master clock,make sure the frequency is 10khz
+	//delete reg [15:0] rxd_filter_num1_o,//set filter number
+	//// Pcm receive control interface 2
+	//delete reg [1:0] rxd_number2_o,
+	//delete reg [2:0] rxd_pattern2_o,
+	//delete reg [15:0] rxd_length2_o,
+	//delete reg [31:0] rxd_code2_o,
+    //delete reg [15:0] rxd_divisor2_o,
+	//delete reg [15:0] rxd_filter_num2_o,
+	//// Pcm receive control interface 3
+	//delete reg [1:0] rxd_number3_o,
+	//delete reg [2:0] rxd_pattern3_o,
+	//delete reg [15:0] rxd_length3_o,
+	//delete reg [31:0] rxd_code3_o,
+    //delete reg [15:0] rxd_divisor3_o,
+	//delete reg [15:0] rxd_filter_num3_o,
+	//// Pcm receive control interface 4
+	//delete reg [1:0] rxd_number4_o,
+	//delete reg [2:0] rxd_pattern4_o,
+	//delete reg [15:0] rxd_length4_o,
+	//delete reg [31:0] rxd_code4_o,
+    //delete reg [15:0] rxd_divisor4_o,
+	//delete reg [15:0] rxd_filter_num4_o,
 	// Read data interface 1
 	input [12:0] fifo_wr_usedw1_i, 		//the front end fifo usedw 
 	input [13:0] fifo_rd_usedw1_i, 		//the back end fifo usedw 
 	input [63:0] fifo_usedw1_i, 		//nvme usedw + ddr usedw + front end usedw + back end fifo usedw
 	output fifo_rd_req1_o, 				//fifo data read request
-	input [31:0] fifo_rd_data1_i, 		//fifo data read data
+	output reg [31:0] fifo_tx_data1_i, 		//fifo data read data
 	// Read data interface 2
 	input [12:0] fifo_wr_usedw2_i,
 	input [13:0] fifo_rd_usedw2_i,
 	input [63:0] fifo_usedw2_i,
 	output fifo_rd_req2_o,
-	input [31:0] fifo_rd_data2_i,
+	//output reg [31:0] fifo_tx_data2_i,
 	// Read data interface 3
 	input [12:0] fifo_wr_usedw3_i,
 	input [13:0] fifo_rd_usedw3_i,
 	input [63:0] fifo_usedw3_i,
 	output fifo_rd_req3_o,
-	input [31:0] fifo_rd_data3_i,
+	//output reg [31:0] fifo_tx_data3_i,
 	// Read data interface 4
 	input [12:0] fifo_wr_usedw4_i,
 	input [13:0] fifo_rd_usedw4_i,
 	input [63:0] fifo_usedw4_i,
 	output fifo_rd_req4_o,
-	input [31:0] fifo_rd_data4_i,
+	//output reg [31:0] fifo_tx_data4_i,
 	
 	input PXI_trig0,
 	input clk100M,	
@@ -109,6 +109,12 @@ module pci9054_intf#
 	output reg fifo_back_rst3_o,
 	output reg fifo_back_rst4_o,
 	
+	output reg [31:0] txd_send_time_o,
+	output reg [31:0] txd_number_o,
+	output reg [31:0] txd_cntr_num_o,
+	output reg [15:0]txd_frame_o,
+	output reg [15:0]txd_width_o,
+	output reg [15:0]txd_height_o,
 	// User ports ends
 	// Do not modify the ports beyond this line	
 
@@ -245,11 +251,11 @@ always@(posedge p_clk_i or negedge p_rst_n_i) begin
 	else if((p_addr_i == 1) && (w_operate)) rst_n_o <= ldata_o; //reset signal
 	else rst_n_o <= rst_n_o;
 end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) {pud_sel_o,tr_sel_o,lp_sel_o} <= 11'h0;
-	else if((p_addr_i == 2) && (w_operate)) {pud_sel_o,tr_sel_o,lp_sel_o} <= ldata_o; //interface matching
-	else {pud_sel_o,tr_sel_o,lp_sel_o} <= {pud_sel_o,tr_sel_o,lp_sel_o};
-end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) {pud_sel_o,tr_sel_o,lp_sel_o} <= 11'h0;
+// 	else if((p_addr_i == 2) && (w_operate)) {pud_sel_o,tr_sel_o,lp_sel_o} <= ldata_o; //interface matching
+// 	else {pud_sel_o,tr_sel_o,lp_sel_o} <= {pud_sel_o,tr_sel_o,lp_sel_o};
+// end
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
 	if(!p_rst_n_i) rxd_ena_o <= 4'h0; //disable
 	else if((p_addr_i == 3) && (w_operate)) rxd_ena_o <= ldata_o;
@@ -270,243 +276,335 @@ always@(posedge p_clk_i or negedge p_rst_n_i) begin
 	else if((p_addr_i == 6) && (w_operate)) rd_mode_o <= ldata_o;
 	else rd_mode_o <= rd_mode_o;
 end
-// Pcm send control interface
+
+// // // Pcm send control interface
+// // always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// // 	if(!p_rst_n_i) txd_start_o <= 1'b0;
+// // 	else if((p_addr_i == 16) && (w_operate)) txd_start_o <= ldata_o;
+// // 	else txd_start_o <= 1'b0;
+// // end
+// // always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// // 	if(!p_rst_n_i) txd_edge_o <= 1'b0; //posedge
+// // 	else if((p_addr_i == 17) && (w_operate)) txd_edge_o <= ldata_o;
+// // 	else txd_edge_o <= txd_edge_o;
+// // end
+// // always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// // 	if(!p_rst_n_i) txd_baudrate_o <= 16'h5; //10Mhz
+// // 	else if((p_addr_i == 18) && (w_operate)) txd_baudrate_o <= ldata_o;
+// // 	else txd_baudrate_o <= txd_baudrate_o;
+// // end
+// // always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// // 	if(!p_rst_n_i) txd_frame_o <= 16'h400; //1024Byte
+// // 	else if((p_addr_i == 19) && (w_operate)) txd_frame_o <= ldata_o;
+// // 	else txd_frame_o <= txd_frame_o;
+// // end
+// // always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// // 	if(!p_rst_n_i) txd_code_o <= 32'h9abcb52c; //0x9abcb52c
+// // 	else if((p_addr_i == 20) && (w_operate)) txd_code_o <= ldata_o;
+// // 	else txd_code_o <= txd_code_o;
+// // end
+// // always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// // 	if(!p_rst_n_i) txd_pattern_o <= 2'h0; //RNRZL
+// // 	else if((p_addr_i == 21) && (w_operate)) txd_pattern_o <= ldata_o;
+// // 	else txd_pattern_o <= txd_pattern_o;
+// // end
+// // always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// // 	if(!p_rst_n_i) txd_number_o <= 2'h0; //4Byte
+// // 	else if((p_addr_i == 22) && (w_operate)) txd_number_o <= ldata_o;
+// // 	else txd_number_o <= txd_number_o;
+// // end
+
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) txd_cntr_num_o <= 32'ha; //10Packs
+// 	else if((p_addr_i == 23) && (w_operate)) txd_cntr_num_o <= ldata_o;
+// 	else txd_cntr_num_o <= txd_cntr_num_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) txd_send_time_o <= 32'h7a120; //500000(5ms)
+// 	else if((p_addr_i == 24) && (w_operate)) txd_send_time_o <= ldata_o;
+// 	else txd_send_time_o <= txd_send_time_o;
+// end
+// // Pcm receive control interface 1
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_number1_o <= 2'h0; //4Byte
+// 	else if((p_addr_i == 37) && (w_operate)) rxd_number1_o <= ldata_o;
+// 	else rxd_number1_o <= rxd_number1_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_pattern1_o <= 2'h0; //RNRZL
+// 	else if((p_addr_i == 38) && (w_operate)) rxd_pattern1_o <= ldata_o;
+// 	else rxd_pattern1_o <= rxd_pattern1_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_length1_o <= 16'h400; //1024Byte
+// 	else if((p_addr_i == 39) && (w_operate)) rxd_length1_o <= ldata_o;
+// 	else rxd_length1_o <= rxd_length1_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_code1_o <= 32'h9abcb52c; //0x9abcb52c
+// 	else if((p_addr_i == 40) && (w_operate)) rxd_code1_o <= ldata_o;
+// 	else rxd_code1_o <= rxd_code1_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_divisor1_o <= 16'h2710; //10000(10us)
+// 	else if((p_addr_i == 41) && (w_operate)) rxd_divisor1_o <= ldata_o;
+// 	else rxd_divisor1_o <= rxd_divisor1_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_filter_num1_o <= 16'h3; //3 clock cycles
+// 	else if((p_addr_i == 42) && (w_operate)) rxd_filter_num1_o <= ldata_o;
+// 	else rxd_filter_num1_o <= rxd_filter_num1_o;
+// end
+// // Pcm receive control interface 2
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_number2_o <= 2'h0; //4Byte
+// 	else if((p_addr_i == 53) && (w_operate)) rxd_number2_o <= ldata_o;
+// 	else rxd_number2_o <= rxd_number2_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_pattern2_o <= 2'h0; //RNRZL
+// 	else if((p_addr_i == 54) && (w_operate)) rxd_pattern2_o <= ldata_o;
+// 	else rxd_pattern2_o <= rxd_pattern2_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_length2_o <= 16'h400; //1024Byte
+// 	else if((p_addr_i == 55) && (w_operate)) rxd_length2_o <= ldata_o;
+// 	else rxd_length2_o <= rxd_length2_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_code2_o <= 32'h9abcb52c; //0x9abcb52c
+// 	else if((p_addr_i == 56) && (w_operate)) rxd_code2_o <= ldata_o;
+// 	else rxd_code2_o <= rxd_code2_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_divisor2_o <= 16'h2710; //10000(10us)
+// 	else if((p_addr_i == 57) && (w_operate)) rxd_divisor2_o <= ldata_o;
+// 	else rxd_divisor2_o <= rxd_divisor2_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_filter_num2_o <= 16'h3; //3 clock cycles
+// 	else if((p_addr_i == 58) && (w_operate)) rxd_filter_num2_o <= ldata_o;
+// 	else rxd_filter_num2_o <= rxd_filter_num2_o;
+// end
+// // Pcm receive control interface 3
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_number3_o <= 2'h0; //4Byte
+// 	else if((p_addr_i == 69) && (w_operate)) rxd_number3_o <= ldata_o;
+// 	else rxd_number3_o <= rxd_number3_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_pattern3_o <= 2'h0; //RNRZL
+// 	else if((p_addr_i == 70) && (w_operate)) rxd_pattern3_o <= ldata_o;
+// 	else rxd_pattern3_o <= rxd_pattern3_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_length3_o <= 16'h400; //1024Byte
+// 	else if((p_addr_i == 71) && (w_operate)) rxd_length3_o <= ldata_o;
+// 	else rxd_length3_o <= rxd_length3_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_code3_o <= 32'h9abcb52c; //0x9abcb52c
+// 	else if((p_addr_i == 72) && (w_operate)) rxd_code3_o <= ldata_o;
+// 	else rxd_code3_o <= rxd_code3_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_divisor3_o <= 16'h2710; //10000(10us)
+// 	else if((p_addr_i == 73) && (w_operate)) rxd_divisor3_o <= ldata_o;
+// 	else rxd_divisor3_o <= rxd_divisor3_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_filter_num3_o <= 16'h3; //3 clock cycles
+// 	else if((p_addr_i == 74) && (w_operate)) rxd_filter_num3_o <= ldata_o;
+// 	else rxd_filter_num3_o <= rxd_filter_num3_o;
+// end
+// // Pcm receive control interface 4
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_number4_o <= 2'h0; //4Byte
+// 	else if((p_addr_i == 85) && (w_operate)) rxd_number4_o <= ldata_o;
+// 	else rxd_number4_o <= rxd_number4_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_pattern4_o <= 2'h0; //RNRZL
+// 	else if((p_addr_i == 86) && (w_operate)) rxd_pattern4_o <= ldata_o;
+// 	else rxd_pattern4_o <= rxd_pattern4_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_length4_o <= 16'h400; //1024Byte
+// 	else if((p_addr_i == 87) && (w_operate)) rxd_length4_o <= ldata_o;
+// 	else rxd_length4_o <= rxd_length4_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_code4_o <= 32'h9abcb52c; //0x9abcb52c
+// 	else if((p_addr_i == 88) && (w_operate)) rxd_code4_o <= ldata_o;
+// 	else rxd_code4_o <= rxd_code4_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_divisor4_o <= 16'h2710; //10000(10us)
+// 	else if((p_addr_i == 89) && (w_operate)) rxd_divisor4_o <= ldata_o;
+// 	else rxd_divisor4_o <= rxd_divisor4_o;
+// end
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) rxd_filter_num4_o <= 16'h3; //3 clock cycles
+// 	else if((p_addr_i == 90) && (w_operate)) rxd_filter_num4_o <= ldata_o;
+// 	else rxd_filter_num4_o <= rxd_filter_num4_o;
+// end
+
+
+
+
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_start_o <= 1'b0;
-	else if((p_addr_i == 16) && (w_operate)) txd_start_o <= ldata_o;
-	else txd_start_o <= 1'b0;
+	if(!p_rst_n_i) fifo_tx_data1_i <= 32'b0; //initial
+	else if((p_addr_i == 7) && (w_operate)) fifo_tx_data1_i <= ldata_o;
+	else fifo_tx_data1_i <= fifo_tx_data1_i;
 end
+
+
+
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) fifo_tx_data2_i <= 32'b0; //initial
+// 	else if((p_addr_i == 3) && (w_operate)) fifo_tx_data2_i <= ldata_o;
+// 	else fifo_tx_data2_i <= fifo_tx_data2_i;
+// end
+
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) fifo_tx_data3_i <= 32'b0; //initial
+// 	else if((p_addr_i == 1) && (w_operate)) fifo_tx_data3_i <= ldata_o;
+// 	else fifo_tx_data3_i <= fifo_tx_data3_i;
+// end
+
+// always@(posedge p_clk_i or negedge p_rst_n_i) begin
+// 	if(!p_rst_n_i) fifo_tx_data4_i <= 32'b0; //initial
+// 	else if((p_addr_i == 5) && (w_operate)) fifo_tx_data4_i <= ldata_o;
+// 	else fifo_tx_data4_i <= fifo_tx_data4_i;
+// end
+
+
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_edge_o <= 1'b0; //posedge
-	else if((p_addr_i == 17) && (w_operate)) txd_edge_o <= ldata_o;
-	else txd_edge_o <= txd_edge_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_baudrate_o <= 16'h5; //10Mhz
-	else if((p_addr_i == 18) && (w_operate)) txd_baudrate_o <= ldata_o;
-	else txd_baudrate_o <= txd_baudrate_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_frame_o <= 16'h400; //1024Byte
-	else if((p_addr_i == 19) && (w_operate)) txd_frame_o <= ldata_o;
-	else txd_frame_o <= txd_frame_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_code_o <= 32'h9abcb52c; //0x9abcb52c
-	else if((p_addr_i == 20) && (w_operate)) txd_code_o <= ldata_o;
-	else txd_code_o <= txd_code_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_pattern_o <= 2'h0; //RNRZL
-	else if((p_addr_i == 21) && (w_operate)) txd_pattern_o <= ldata_o;
-	else txd_pattern_o <= txd_pattern_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_number_o <= 2'h0; //4Byte
-	else if((p_addr_i == 22) && (w_operate)) txd_number_o <= ldata_o;
-	else txd_number_o <= txd_number_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_cntr_num_o <= 32'ha; //10Packs
-	else if((p_addr_i == 23) && (w_operate)) txd_cntr_num_o <= ldata_o;
-	else txd_cntr_num_o <= txd_cntr_num_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) txd_send_time_o <= 32'h7a120; //500000(5ms)
-	else if((p_addr_i == 24) && (w_operate)) txd_send_time_o <= ldata_o;
+	if(!p_rst_n_i) txd_send_time_o <= 32'b0; //initial
+	else if((p_addr_i == 8) && (w_operate)) txd_send_time_o <= ldata_o;
 	else txd_send_time_o <= txd_send_time_o;
 end
-// Pcm receive control interface 1
+
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_number1_o <= 2'h0; //4Byte
-	else if((p_addr_i == 37) && (w_operate)) rxd_number1_o <= ldata_o;
-	else rxd_number1_o <= rxd_number1_o;
+	if(!p_rst_n_i) txd_number_o <= 32'b0; //initial
+	else if((p_addr_i == 9) && (w_operate)) txd_number_o <= ldata_o;
+	else txd_number_o <= txd_number_o;
 end
+
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_pattern1_o <= 2'h0; //RNRZL
-	else if((p_addr_i == 38) && (w_operate)) rxd_pattern1_o <= ldata_o;
-	else rxd_pattern1_o <= rxd_pattern1_o;
+	if(!p_rst_n_i) txd_cntr_num_o <= 32'b0; //initial
+	else if((p_addr_i == 10) && (w_operate)) txd_cntr_num_o <= ldata_o;
+	else txd_cntr_num_o <= txd_cntr_num_o;
 end
+
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_length1_o <= 16'h400; //1024Byte
-	else if((p_addr_i == 39) && (w_operate)) rxd_length1_o <= ldata_o;
-	else rxd_length1_o <= rxd_length1_o;
+	if(!p_rst_n_i) txd_frame_o <= 32'b0; //initial
+	else if((p_addr_i == 11) && (w_operate)) txd_frame_o <= ldata_o;
+	else txd_frame_o <= txd_frame_o;
 end
+
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_code1_o <= 32'h9abcb52c; //0x9abcb52c
-	else if((p_addr_i == 40) && (w_operate)) rxd_code1_o <= ldata_o;
-	else rxd_code1_o <= rxd_code1_o;
+	if(!p_rst_n_i) txd_width_o <= 32'b0; //initial
+	else if((p_addr_i == 12) && (w_operate)) txd_width_o <= ldata_o;
+	else txd_width_o <= txd_width_o;
 end
+
 always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_divisor1_o <= 16'h2710; //10000(10us)
-	else if((p_addr_i == 41) && (w_operate)) rxd_divisor1_o <= ldata_o;
-	else rxd_divisor1_o <= rxd_divisor1_o;
+	if(!p_rst_n_i) txd_height_o <= 32'b0; //initial
+	else if((p_addr_i == 13) && (w_operate)) txd_height_o <= ldata_o;
+	else txd_height_o <= txd_height_o;
 end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_filter_num1_o <= 16'h3; //3 clock cycles
-	else if((p_addr_i == 42) && (w_operate)) rxd_filter_num1_o <= ldata_o;
-	else rxd_filter_num1_o <= rxd_filter_num1_o;
-end
-// Pcm receive control interface 2
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_number2_o <= 2'h0; //4Byte
-	else if((p_addr_i == 53) && (w_operate)) rxd_number2_o <= ldata_o;
-	else rxd_number2_o <= rxd_number2_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_pattern2_o <= 2'h0; //RNRZL
-	else if((p_addr_i == 54) && (w_operate)) rxd_pattern2_o <= ldata_o;
-	else rxd_pattern2_o <= rxd_pattern2_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_length2_o <= 16'h400; //1024Byte
-	else if((p_addr_i == 55) && (w_operate)) rxd_length2_o <= ldata_o;
-	else rxd_length2_o <= rxd_length2_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_code2_o <= 32'h9abcb52c; //0x9abcb52c
-	else if((p_addr_i == 56) && (w_operate)) rxd_code2_o <= ldata_o;
-	else rxd_code2_o <= rxd_code2_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_divisor2_o <= 16'h2710; //10000(10us)
-	else if((p_addr_i == 57) && (w_operate)) rxd_divisor2_o <= ldata_o;
-	else rxd_divisor2_o <= rxd_divisor2_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_filter_num2_o <= 16'h3; //3 clock cycles
-	else if((p_addr_i == 58) && (w_operate)) rxd_filter_num2_o <= ldata_o;
-	else rxd_filter_num2_o <= rxd_filter_num2_o;
-end
-// Pcm receive control interface 3
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_number3_o <= 2'h0; //4Byte
-	else if((p_addr_i == 69) && (w_operate)) rxd_number3_o <= ldata_o;
-	else rxd_number3_o <= rxd_number3_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_pattern3_o <= 2'h0; //RNRZL
-	else if((p_addr_i == 70) && (w_operate)) rxd_pattern3_o <= ldata_o;
-	else rxd_pattern3_o <= rxd_pattern3_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_length3_o <= 16'h400; //1024Byte
-	else if((p_addr_i == 71) && (w_operate)) rxd_length3_o <= ldata_o;
-	else rxd_length3_o <= rxd_length3_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_code3_o <= 32'h9abcb52c; //0x9abcb52c
-	else if((p_addr_i == 72) && (w_operate)) rxd_code3_o <= ldata_o;
-	else rxd_code3_o <= rxd_code3_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_divisor3_o <= 16'h2710; //10000(10us)
-	else if((p_addr_i == 73) && (w_operate)) rxd_divisor3_o <= ldata_o;
-	else rxd_divisor3_o <= rxd_divisor3_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_filter_num3_o <= 16'h3; //3 clock cycles
-	else if((p_addr_i == 74) && (w_operate)) rxd_filter_num3_o <= ldata_o;
-	else rxd_filter_num3_o <= rxd_filter_num3_o;
-end
-// Pcm receive control interface 4
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_number4_o <= 2'h0; //4Byte
-	else if((p_addr_i == 85) && (w_operate)) rxd_number4_o <= ldata_o;
-	else rxd_number4_o <= rxd_number4_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_pattern4_o <= 2'h0; //RNRZL
-	else if((p_addr_i == 86) && (w_operate)) rxd_pattern4_o <= ldata_o;
-	else rxd_pattern4_o <= rxd_pattern4_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_length4_o <= 16'h400; //1024Byte
-	else if((p_addr_i == 87) && (w_operate)) rxd_length4_o <= ldata_o;
-	else rxd_length4_o <= rxd_length4_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_code4_o <= 32'h9abcb52c; //0x9abcb52c
-	else if((p_addr_i == 88) && (w_operate)) rxd_code4_o <= ldata_o;
-	else rxd_code4_o <= rxd_code4_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_divisor4_o <= 16'h2710; //10000(10us)
-	else if((p_addr_i == 89) && (w_operate)) rxd_divisor4_o <= ldata_o;
-	else rxd_divisor4_o <= rxd_divisor4_o;
-end
-always@(posedge p_clk_i or negedge p_rst_n_i) begin
-	if(!p_rst_n_i) rxd_filter_num4_o <= 16'h3; //3 clock cycles
-	else if((p_addr_i == 90) && (w_operate)) rxd_filter_num4_o <= ldata_o;
-	else rxd_filter_num4_o <= rxd_filter_num4_o;
-end
+
+
 
 // Pci read operate
 assign ldata_i = ((p_addr_i == 0) && (r_operate)) ? test_reg : //test register
 				 ((p_addr_i == 1) && (r_operate)) ? {28'h0,rst_n_o} :
-				 ((p_addr_i == 2) && (r_operate)) ? {21'h0,pud_sel_o,tr_sel_o,lp_sel_o} :
+				// ((p_addr_i == 2) && (r_operate)) ? {21'h0,pud_sel_o,tr_sel_o,lp_sel_o} :
 				 ((p_addr_i == 3) && (r_operate)) ? {28'h0,rxd_ena_o} :
 				 ((p_addr_i == 4) && (r_operate)) ? {28'h0,rxd_edge_o} :
 				 ((p_addr_i == 5) && (r_operate)) ? alloc_mem_o :
 				 ((p_addr_i == 6) && (r_operate)) ? {28'h0,rd_mode_o} :
-				 // Pcm send control interface status
-				 ((p_addr_i == 16) && (r_operate)) ? {31'h0,txd_start_o} :
-				 ((p_addr_i == 17) && (r_operate)) ? {31'h0,txd_edge_o} :
-				 ((p_addr_i == 18) && (r_operate)) ? {16'h0,txd_baudrate_o} :
-				 ((p_addr_i == 19) && (r_operate)) ? {16'h0,txd_frame_o} :
-				 ((p_addr_i == 20) && (r_operate)) ? txd_code_o :
-				 ((p_addr_i == 21) && (r_operate)) ? {29'h0,txd_pattern_o} :
-				 ((p_addr_i == 22) && (r_operate)) ? {30'h0,txd_number_o} :
-				 ((p_addr_i == 23) && (r_operate)) ? txd_cntr_num_o :
-				 ((p_addr_i == 24) && (r_operate)) ? txd_send_time_o :
-				 // Pcm receive control interface 1 status
-				 ((p_addr_i == 32) && (r_operate)) ? {19'h0,fifo_wr_usedw1_i} :
-				 ((p_addr_i == 33) && (r_operate)) ? {18'h0,fifo_rd_usedw1_i} :
-				 ((p_addr_i == 34) && (r_operate)) ? fifo_usedw1_i[31:0] :
-				 ((p_addr_i == 35) && (r_operate)) ? fifo_usedw1_i[63:32] :
-				 ((p_addr_i == 36) && (r_operate)) ? {fifo_rd_data1_i[7:0],fifo_rd_data1_i[15:8],fifo_rd_data1_i[23:16],fifo_rd_data1_i[31:24]} :
-				 ((p_addr_i == 37) && (r_operate)) ? {30'h0,rxd_number1_o} :
-				 ((p_addr_i == 38) && (r_operate)) ? {29'h0,rxd_pattern1_o} :
-				 ((p_addr_i == 39) && (r_operate)) ? {16'h0,rxd_length1_o} :
-				 ((p_addr_i == 40) && (r_operate)) ? rxd_code1_o :
-				 ((p_addr_i == 41) && (r_operate)) ? {16'h0,rxd_divisor1_o} :
-				 ((p_addr_i == 42) && (r_operate)) ? {16'h0,rxd_filter_num1_o} :
-				 // Pcm receive control interface 2 status
-				 ((p_addr_i == 48) && (r_operate)) ? {19'h0,fifo_wr_usedw2_i} :
-				 ((p_addr_i == 49) && (r_operate)) ? {18'h0,fifo_rd_usedw2_i} :
-				 ((p_addr_i == 50) && (r_operate)) ? fifo_usedw2_i[31:0] :
-				 ((p_addr_i == 51) && (r_operate)) ? fifo_usedw2_i[63:32] :
-				 ((p_addr_i == 52) && (r_operate)) ? {fifo_rd_data2_i[7:0],fifo_rd_data2_i[15:8],fifo_rd_data2_i[23:16],fifo_rd_data2_i[31:24]} :
-				 ((p_addr_i == 53) && (r_operate)) ? {30'h0,rxd_number2_o} :
-				 ((p_addr_i == 54) && (r_operate)) ? {29'h0,rxd_pattern2_o} :
-				 ((p_addr_i == 55) && (r_operate)) ? {16'h0,rxd_length2_o} :
-				 ((p_addr_i == 56) && (r_operate)) ? rxd_code2_o :
-				 ((p_addr_i == 57) && (r_operate)) ? {16'h0,rxd_divisor2_o} :
-				 ((p_addr_i == 58) && (r_operate)) ? {16'h0,rxd_filter_num2_o} :
-				 // Pcm receive control interface 3 status
-				 ((p_addr_i == 64) && (r_operate)) ? {19'h0,fifo_wr_usedw3_i} :
-				 ((p_addr_i == 65) && (r_operate)) ? {18'h0,fifo_rd_usedw3_i} :
-				 ((p_addr_i == 66) && (r_operate)) ? fifo_usedw3_i[31:0] :
-				 ((p_addr_i == 67) && (r_operate)) ? fifo_usedw3_i[63:32] :
-				 ((p_addr_i == 68) && (r_operate)) ? {fifo_rd_data3_i[7:0],fifo_rd_data3_i[15:8],fifo_rd_data3_i[23:16],fifo_rd_data3_i[31:24]} :
-				 ((p_addr_i == 69) && (r_operate)) ? {30'h0,rxd_number3_o} :
-				 ((p_addr_i == 70) && (r_operate)) ? {29'h0,rxd_pattern3_o} :
-				 ((p_addr_i == 71) && (r_operate)) ? {16'h0,rxd_length3_o} :
-				 ((p_addr_i == 72) && (r_operate)) ? rxd_code3_o :
-				 ((p_addr_i == 73) && (r_operate)) ? {16'h0,rxd_divisor3_o} :
-				 ((p_addr_i == 74) && (r_operate)) ? {16'h0,rxd_filter_num3_o} :
-				 // Pcm receive control interface 4 status
-				 ((p_addr_i == 80) && (r_operate)) ? {19'h0,fifo_wr_usedw4_i} :
-				 ((p_addr_i == 81) && (r_operate)) ? {18'h0,fifo_rd_usedw4_i} :
-				 ((p_addr_i == 82) && (r_operate)) ? fifo_usedw4_i[31:0] :
-				 ((p_addr_i == 83) && (r_operate)) ? fifo_usedw4_i[63:32] :
-				 ((p_addr_i == 84) && (r_operate)) ? {fifo_rd_data4_i[7:0],fifo_rd_data4_i[15:8],fifo_rd_data4_i[23:16],fifo_rd_data4_i[31:24]} :
-				 ((p_addr_i == 85) && (r_operate)) ? {30'h0,rxd_number4_o} :
-				 ((p_addr_i == 86) && (r_operate)) ? {29'h0,rxd_pattern4_o} :
-				 ((p_addr_i == 87) && (r_operate)) ? {16'h0,rxd_length4_o} :
-				 ((p_addr_i == 88) && (r_operate)) ? rxd_code4_o :
-				 ((p_addr_i == 89) && (r_operate)) ? {16'h0,rxd_divisor4_o} :
-				 ((p_addr_i == 90) && (r_operate)) ? {16'h0,rxd_filter_num4_o} :
+				
+				 ((p_addr_i == 7) && (r_operate)) ? fifo_tx_data1_i :
+				 ((p_addr_i == 8) && (r_operate)) ? txd_send_time_o :
+				 ((p_addr_i == 9) && (r_operate)) ? txd_number_o :
+				 ((p_addr_i == 10) && (r_operate)) ? txd_cntr_num_o :
+				 ((p_addr_i == 11) && (r_operate)) ? {16'h0,txd_frame_o} :
+				 ((p_addr_i == 12) && (r_operate)) ? {16'h0,txd_width_o} :
+				 ((p_addr_i == 13) && (r_operate)) ? {16'h0,txd_height_o} :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				// // Pcm send control interface status
+				// ((p_addr_i == 16) && (r_operate)) ? {31'h0,txd_start_o} :
+				// ((p_addr_i == 17) && (r_operate)) ? {31'h0,txd_edge_o} :
+				// ((p_addr_i == 18) && (r_operate)) ? {16'h0,txd_baudrate_o} :
+				// ((p_addr_i == 19) && (r_operate)) ? {16'h0,txd_frame_o} :
+				// ((p_addr_i == 20) && (r_operate)) ? txd_code_o :
+				// ((p_addr_i == 21) && (r_operate)) ? {29'h0,txd_pattern_o} :
+				// ((p_addr_i == 22) && (r_operate)) ? {30'h0,txd_number_o} :
+				// ((p_addr_i == 23) && (r_operate)) ? txd_cntr_num_o :
+				// ((p_addr_i == 24) && (r_operate)) ? txd_send_time_o :
+				// // Pcm receive control interface 1 status
+				// ((p_addr_i == 32) && (r_operate)) ? {19'h0,fifo_wr_usedw1_i} :
+				// ((p_addr_i == 33) && (r_operate)) ? {18'h0,fifo_rd_usedw1_i} :
+				// ((p_addr_i == 34) && (r_operate)) ? fifo_usedw1_i[31:0] :
+				// ((p_addr_i == 35) && (r_operate)) ? fifo_usedw1_i[63:32] :
+				// ((p_addr_i == 36) && (r_operate)) ? {fifo_rd_data1_i[7:0],fifo_rd_data1_i[15:8],fifo_rd_data1_i[23:16],fifo_rd_data1_i[31:24]} :
+				// ((p_addr_i == 37) && (r_operate)) ? {30'h0,rxd_number1_o} :
+				// ((p_addr_i == 38) && (r_operate)) ? {29'h0,rxd_pattern1_o} :
+				// ((p_addr_i == 39) && (r_operate)) ? {16'h0,rxd_length1_o} :
+				// ((p_addr_i == 40) && (r_operate)) ? rxd_code1_o :
+				// ((p_addr_i == 41) && (r_operate)) ? {16'h0,rxd_divisor1_o} :
+				// ((p_addr_i == 42) && (r_operate)) ? {16'h0,rxd_filter_num1_o} :
+				// // Pcm receive control interface 2 status
+				// ((p_addr_i == 48) && (r_operate)) ? {19'h0,fifo_wr_usedw2_i} :
+				// ((p_addr_i == 49) && (r_operate)) ? {18'h0,fifo_rd_usedw2_i} :
+				// ((p_addr_i == 50) && (r_operate)) ? fifo_usedw2_i[31:0] :
+				// ((p_addr_i == 51) && (r_operate)) ? fifo_usedw2_i[63:32] :
+				// ((p_addr_i == 52) && (r_operate)) ? {fifo_rd_data2_i[7:0],fifo_rd_data2_i[15:8],fifo_rd_data2_i[23:16],fifo_rd_data2_i[31:24]} :
+				// ((p_addr_i == 53) && (r_operate)) ? {30'h0,rxd_number2_o} :
+				// ((p_addr_i == 54) && (r_operate)) ? {29'h0,rxd_pattern2_o} :
+				// ((p_addr_i == 55) && (r_operate)) ? {16'h0,rxd_length2_o} :
+				// ((p_addr_i == 56) && (r_operate)) ? rxd_code2_o :
+				// ((p_addr_i == 57) && (r_operate)) ? {16'h0,rxd_divisor2_o} :
+				// ((p_addr_i == 58) && (r_operate)) ? {16'h0,rxd_filter_num2_o} :
+				// // Pcm receive control interface 3 status
+				// ((p_addr_i == 64) && (r_operate)) ? {19'h0,fifo_wr_usedw3_i} :
+				// ((p_addr_i == 65) && (r_operate)) ? {18'h0,fifo_rd_usedw3_i} :
+				// ((p_addr_i == 66) && (r_operate)) ? fifo_usedw3_i[31:0] :
+				// ((p_addr_i == 67) && (r_operate)) ? fifo_usedw3_i[63:32] :
+				// ((p_addr_i == 68) && (r_operate)) ? {fifo_rd_data3_i[7:0],fifo_rd_data3_i[15:8],fifo_rd_data3_i[23:16],fifo_rd_data3_i[31:24]} :
+				// ((p_addr_i == 69) && (r_operate)) ? {30'h0,rxd_number3_o} :
+				// ((p_addr_i == 70) && (r_operate)) ? {29'h0,rxd_pattern3_o} :
+				// ((p_addr_i == 71) && (r_operate)) ? {16'h0,rxd_length3_o} :
+				// ((p_addr_i == 72) && (r_operate)) ? rxd_code3_o :
+				// ((p_addr_i == 73) && (r_operate)) ? {16'h0,rxd_divisor3_o} :
+				// ((p_addr_i == 74) && (r_operate)) ? {16'h0,rxd_filter_num3_o} :
+				// // Pcm receive control interface 4 status
+				// ((p_addr_i == 80) && (r_operate)) ? {19'h0,fifo_wr_usedw4_i} :
+				// ((p_addr_i == 81) && (r_operate)) ? {18'h0,fifo_rd_usedw4_i} :
+				// ((p_addr_i == 82) && (r_operate)) ? fifo_usedw4_i[31:0] :
+				// ((p_addr_i == 83) && (r_operate)) ? fifo_usedw4_i[63:32] :
+				// ((p_addr_i == 84) && (r_operate)) ? {fifo_rd_data4_i[7:0],fifo_rd_data4_i[15:8],fifo_rd_data4_i[23:16],fifo_rd_data4_i[31:24]} :
+				// ((p_addr_i == 85) && (r_operate)) ? {30'h0,rxd_number4_o} :
+				// ((p_addr_i == 86) && (r_operate)) ? {29'h0,rxd_pattern4_o} :
+				// ((p_addr_i == 87) && (r_operate)) ? {16'h0,rxd_length4_o} :
+				// ((p_addr_i == 88) && (r_operate)) ? rxd_code4_o :
+				// ((p_addr_i == 89) && (r_operate)) ? {16'h0,rxd_divisor4_o} :
+				// ((p_addr_i == 90) && (r_operate)) ? {16'h0,rxd_filter_num4_o} :
 				 ((p_addr_i == 91) && (r_operate)) ?  second_rx1 :
 				 ((p_addr_i == 92) && (r_operate)) ?  n_second_rx1 :
 				 ((p_addr_i == 93) && (r_operate)) ?  second_rx2 :
@@ -588,24 +686,24 @@ ila_0 ila9054(
 .probe0(PXI_trig0),
 .probe1(sync_flag_temp1),
 .probe2(n_second_rx1),
-.probe3(second_rx1),
-.probe4(pud_sel_o),
-.probe5(tr_sel_o),
-.probe6(lp_sel_o),
-.probe7(rxd_ena_o),
-.probe8(rxd_edge_o),
-.probe9(txd_start_o),
-.probe10(txd_edge_o),
-.probe11(txd_baudrate_o),
-.probe12(txd_code_o),
-.probe13(txd_pattern_o),
-.probe14(txd_number_o),
-.probe15(fifo_rd_usedw1_i),
-.probe16({fifo_rd_data1_i[7:0],fifo_rd_data1_i[15:8],fifo_rd_data1_i[23:16],fifo_rd_data1_i[31:24]}),
-.probe17(rxd_number1_o),
-.probe18(rxd_pattern1_o),
-.probe19(rxd_length1_o),
-.probe20(rxd_code1_o),
-.probe21(rxd_filter_num1_o)
+.probe3(second_rx1)
+//.probe4(pud_sel_o),
+//.probe5(tr_sel_o),
+//.probe6(lp_sel_o),
+//.probe7(rxd_ena_o),
+//.probe8(rxd_edge_o),
+//.probe9(txd_start_o),
+//.probe10(txd_edge_o),
+//.probe11(txd_baudrate_o),
+//.probe12(txd_code_o),
+//.probe13(txd_pattern_o),
+//.probe14(txd_number_o),
+//.probe15(fifo_rd_usedw1_i),
+//.probe16({fifo_rd_data1_i[7:0],fifo_rd_data1_i[15:8],fifo_rd_data1_i[23:16],fifo_rd_data1_i[31:24]}),
+//.probe17(rxd_number1_o),
+//.probe18(rxd_pattern1_o),
+//.probe19(rxd_length1_o),
+//.probe20(rxd_code1_o),
+//.probe21(rxd_filter_num1_o)
 );
 endmodule 
